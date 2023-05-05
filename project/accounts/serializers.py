@@ -10,7 +10,6 @@ from accounts.models import Profile
 User = get_user_model()
 
 
-
 class CustomUserSerializer(UserSerializer):
     class Meta:
         model = User
@@ -18,7 +17,7 @@ class CustomUserSerializer(UserSerializer):
             settings.USER_ID_FIELD,
             settings.LOGIN_FIELD,
             'first_name',
-            'last_name',
+            'last_name'
         )
         read_only_fields = (settings.LOGIN_FIELD)
 
