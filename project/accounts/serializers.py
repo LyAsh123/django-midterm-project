@@ -54,7 +54,7 @@ class CustomUserCreateSerializer(UserCreateSerializer):
             'last_name' : validated_data.get('last_name', ''),
             'email' : validated_data.get('email', ''),
             'password' : validated_data.get('password', ''),
-            'username' : validated_data.get('email', '')
+            'username' : validated_data.get('first_name', '')
         }
 
     def validate(self, attrs):
