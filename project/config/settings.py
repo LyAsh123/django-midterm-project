@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,10 +142,12 @@ EMAIL_HOST_USER = '49f00003ff56b7'
 EMAIL_HOST_PASSWORD = '214b705005585f'
 EMAIL_PORT = '2525'
 
+FRONTEND_URL = 'http://localhost:3000'
+
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'ACTIVATION_URL': 'activation/{uid}/{token}',
     'LOGIN_FIELD' : 'email',
     'SEND_CONFIRMATION_EMAIL' : True,
     'SEND_ACTIVATION_EMAIL': True,
@@ -152,4 +155,7 @@ DJOSER = {
         'user_create' : 'accounts.serializers.CustomUserCreateSerializer',
         'current_user': 'accounts.serializers.CustomUserSerializer'
     },
+    'EMAIL' : {
+        'activation' : 'accounts.email.CustomActivationEmail'
+    }
 }
